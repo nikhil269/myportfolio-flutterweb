@@ -4,6 +4,8 @@ import 'resume.dart';
 import 'portfolio.dart';
 import 'work.dart';
 import 'dart:js' as js;
+import 'package:dynamic_theme/dynamic_theme.dart';
+import 'package:dynamic_theme/theme_switcher_widgets.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,11 +17,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(),
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
-    );
+    return new DynamicTheme(
+        defaultBrightness: Brightness.light,
+        data: (brightness) => new ThemeData(
+              primarySwatch: Colors.indigo,
+              brightness: brightness,
+            ),
+        themedWidgetBuilder: (context, theme) {
+          return new MaterialApp(
+            title: 'Flutter Demo',
+            theme: theme,
+            home: new MyHomePage(),
+          );
+        });
   }
 }
 
@@ -50,8 +60,8 @@ class _MyHomePageState extends State<MyHomePage>
                   accountName: Text("Nikhil Chaudhary"),
                   currentAccountPicture: GestureDetector(
                     child: CircleAvatar(
-                      backgroundImage:
-                          AssetImage("https://avatars3.githubusercontent.com/u/50622386?s=460&v=4"),
+                      backgroundImage: AssetImage(
+                          "https://avatars3.githubusercontent.com/u/50622386?s=460&v=4"),
                     ),
                   ),
                   decoration: BoxDecoration(
@@ -85,10 +95,8 @@ class _MyHomePageState extends State<MyHomePage>
                     ],
                   ),
                   onTap: () {
-                     Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Work()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Work()));
                   },
                 ),
               ],
@@ -99,6 +107,12 @@ class _MyHomePageState extends State<MyHomePage>
               elevation: 0.0,
               iconTheme: IconThemeData(color: Colors.black),
               backgroundColor: Colors.transparent,
+              actions: <Widget>[
+                 RaisedButton(
+                          onPressed: changeBrightness,
+                          child: const Text("Dark Mode"),
+                        ),
+              ],
               // title: Text(
               //   "Welcome",
               //   style: TextStyle(color: Colors.black),
@@ -174,6 +188,29 @@ class _MyHomePageState extends State<MyHomePage>
                           ),
                         ),
                       ),
+                // SizedBox(
+                //   width: 10,
+                // ),
+                // ResponsiveLayout.isLargeScreen(context)
+                //     ? Container(
+                //         height: 40.0,
+                //         width: 125.0,
+                //         child: RaisedButton(
+                //           padding: EdgeInsets.all(10.0),
+                //           onPressed: () {
+                //             Navigator.push(
+                //                 context,
+                //                 MaterialPageRoute(
+                //                     builder: (context) => Work()));
+                //           },
+                //           color: Colors.yellowAccent,
+                //           textColor: Colors.black,
+                //           child: Center(
+                //             child: Text("Work"),
+                //           ),
+                //         ),
+                //       )
+                //     : Container(),
                 SizedBox(
                   width: 10,
                 ),
@@ -182,18 +219,8 @@ class _MyHomePageState extends State<MyHomePage>
                         height: 40.0,
                         width: 125.0,
                         child: RaisedButton(
-                          padding: EdgeInsets.all(10.0),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Work()));
-                          },
-                          color: Colors.yellowAccent,
-                          textColor: Colors.black,
-                          child: Center(
-                            child: Text("Work"),
-                          ),
+                          onPressed: changeBrightness,
+                          child: const Text("Dark Mode"),
                         ),
                       )
                     : Container(),
@@ -510,6 +537,37 @@ class _MyHomePageState extends State<MyHomePage>
                                     ),
                                   ],
                                 ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    RaisedButton(
+                                      padding: EdgeInsets.only(
+                                          left: 30.0,
+                                          right: 30.0,
+                                          top: 10,
+                                          bottom: 10),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
+                                      ),
+                                      color: Colors.yellow,
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => Work()));
+                                      },
+                                      child: Text(
+                                        "Work",
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),
@@ -737,7 +795,33 @@ class _MyHomePageState extends State<MyHomePage>
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 20,
+                                        width: 10,
+                                      ),
+                                      RaisedButton(
+                                        padding: EdgeInsets.only(
+                                            left: 30.0,
+                                            right: 30.0,
+                                            top: 10,
+                                            bottom: 10),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0),
+                                        ),
+                                        color: Colors.yellowAccent,
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Work()));
+                                        },
+                                        child: Text(
+                                          "Work",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
                                       ),
                                       RaisedButton(
                                         color: Colors.yellow,
@@ -763,7 +847,7 @@ class _MyHomePageState extends State<MyHomePage>
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 20,
+                                        width: 10,
                                       ),
                                       RaisedButton(
                                         padding: EdgeInsets.only(
@@ -781,8 +865,8 @@ class _MyHomePageState extends State<MyHomePage>
                                         child: Text(
                                           "Hire Me",
                                           style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.yellow[800]),
+                                            fontSize: 20,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -836,6 +920,13 @@ class _MyHomePageState extends State<MyHomePage>
         ],
       ),
     );
+  }
+
+  void changeBrightness() {
+    DynamicTheme.of(context).setBrightness(
+        Theme.of(context).brightness == Brightness.dark
+            ? Brightness.light
+            : Brightness.dark);
   }
 }
 
