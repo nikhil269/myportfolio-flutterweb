@@ -108,10 +108,10 @@ class _MyHomePageState extends State<MyHomePage>
               iconTheme: IconThemeData(color: Colors.black),
               backgroundColor: Colors.transparent,
               actions: <Widget>[
-                 RaisedButton(
-                          onPressed: changeBrightness,
-                          child: const Text("Dark Mode"),
-                        ),
+                RaisedButton(
+                  onPressed: changeBrightness,
+                  child: const Text("Dark Mode"),
+                ),
               ],
               // title: Text(
               //   "Welcome",
@@ -184,7 +184,9 @@ class _MyHomePageState extends State<MyHomePage>
                           color: Colors.yellow,
                           textColor: Colors.black,
                           child: Center(
-                            child: Text("Resume"),
+                            child: Text("Resume",style: TextStyle(
+                              color: Colors.black
+                            ),),
                           ),
                         ),
                       ),
@@ -459,7 +461,7 @@ class _MyHomePageState extends State<MyHomePage>
                                       },
                                       child: Text(
                                         "Resume",
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 20,color: Colors.black),
                                       ),
                                     ),
                                     RaisedButton(
@@ -563,7 +565,7 @@ class _MyHomePageState extends State<MyHomePage>
                                       },
                                       child: Text(
                                         "Work",
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 20,color: Colors.black),
                                       ),
                                     ),
                                   ],
@@ -791,7 +793,9 @@ class _MyHomePageState extends State<MyHomePage>
                                         },
                                         child: Text(
                                           "Portfolio",
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black),
                                         ),
                                       ),
                                       SizedBox(
@@ -817,7 +821,9 @@ class _MyHomePageState extends State<MyHomePage>
                                         },
                                         child: Text(
                                           "Work",
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.black),
                                         ),
                                       ),
                                       SizedBox(
