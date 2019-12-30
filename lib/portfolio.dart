@@ -104,6 +104,9 @@ Widget smallCard(BuildContext context, var imagelink, var tittle, var contain) {
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
                         contain,
+                        style: TextStyle(
+                            color: Colors.black,
+                        ),
                       ),
                     )
                   ],
